@@ -1,0 +1,76 @@
+﻿1. def add_include_dir(self, dir):
+2.        """Add 'dir' to the list of directories that will be searched for
+3.        header files.  The compiler is instructed to search directories in
+4.        the order in which they are supplied by successive calls to
+5.        'add_include_dir()'.
+6.        """
+7.        self.include_dirs.append(dir)
+8. 9.    def set_include_dirs(self, dirs):
+10.        """Set the list of directories that will be searched to 'dirs' (a
+11.        list of strings).  Overrides any preceding calls to
+12.        'add_include_dir()'; subsequence calls to 'add_include_dir()' add
+13.        to the list passed to 'set_include_dirs()'.  This does not affect
+14.        any list of standard include directories that the compiler may
+15.        search by default.
+16.        """
+17.        self.include_dirs = dirs[:]
+18. 19.    def add_library(self, libname):
+20.        """Add 'libname' to the list of libraries that will be included in
+21.        all links driven by this compiler object.  Note that 'libname'
+22.        should *not* be the name of a file containing a library, but the
+23.        name of the library itself: the actual filename will be inferred by
+24.        the linker, the compiler, or the compiler class (depending on the
+25.        platform).
+26. 27.        The linker will be instructed to link against libraries in the
+28.        order they were supplied to 'add_library()' and/or
+29.        'set_libraries()'.  It is perfectly valid to duplicate library
+30.        names; the linker will be instructed to link against libraries as
+31.        many times as they are mentioned.
+32.        """
+33.        self.libraries.append(libname)
+34. 35.    def set_libraries(self, libnames):
+36.        """Set the list of libraries to be included in all links driven by
+37.        this compiler object to 'libnames' (a list of strings).  This does
+38.        not affect any standard system libraries that the linker may
+39.        include by default.
+40.        """
+41.        self.libraries = libnames[:]
+42. 43.    def add_library_dir(self, dir):
+44.        """Add 'dir' to the list of directories that will be searched for
+45.        libraries specified to 'add_library()' and 'set_libraries()'.  The
+46.        linker will be instructed to search for libraries in the order they
+47.        are supplied to 'add_library_dir()' and/or 'set_library_dirs()'.
+48.        """
+49.        self.library_dirs.append(dir)
+50. 51.    def set_library_dirs(self, dirs):
+52.        """Set the list of library search directories to 'dirs' (a list of
+53.        strings).  This does not affect any standard library search path
+54.        that the linker may search by default.
+55.        """
+56.        self.library_dirs = dirs[:]
+57. 58.    def add_runtime_library_dir(self, dir):
+59.        """Add 'dir' to the list of directories that will be searched for
+60.        shared libraries at runtime.
+61.        """
+62.        self.runtime_library_dirs.append(dir)
+63. 64.    def set_runtime_library_dirs(self, dirs):
+65.        """Set the list of directories to search for shared libraries at
+66.        runtime to 'dirs' (a list of strings).  This does not affect any
+67.        standard search path that the runtime linker may search by
+68.        default.
+69.        """
+70.        self.runtime_library_dirs = dirs[:]
+71. 72.    def add_link_object(self, object):
+73.        """Add 'object' to the list of object files (or analogues, such as
+74.        explicitly named library files or the output of "resource
+75.        compilers") to be included in every link driven by this compiler
+76.        object.
+77.        """
+78.        self.objects.append(object)
+79. 80.    def set_link_objects(self, objects):
+81.        """Set the list of object files (or analogues) to be included in
+82.        every link to 'objects'.  This does not affect any standard object
+83.        files that the linker may include by default (such as system
+84.        libraries).
+85.        """
+86.        self.objects = objects[:]
